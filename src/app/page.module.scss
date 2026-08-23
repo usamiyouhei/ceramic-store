@@ -1,3 +1,45 @@
 .main {
   min-height: 100vh;
+  padding: 80px 24px;
+  background-color: #f8f7f5;
+}
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.heading {
+  margin-bottom: 48px;
+  text-align: center;
+
+  h1 {
+    color: #222;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+}
+
+.label {
+  margin-bottom: 8px;
+  color: #9a7b4f;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (width <= 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (width <= 520) {
+    grid-template-columns: 1fr;
+  }
 }
