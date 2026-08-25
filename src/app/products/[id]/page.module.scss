@@ -1,0 +1,42 @@
+.main {
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+  background-color: #f8f7f5;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 40px;
+  color: #777;
+  font-size: 14px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #9a7b4f;
+  }
+}
+
+.product {
+  display: grid;
+  grid-template-columns: minmix(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.imageWrapper {
+  overflow: hidden;
+  // aspect-ratio: 1/1;
+  background-color: #eeeeeb;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
