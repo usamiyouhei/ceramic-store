@@ -49,7 +49,22 @@ export default function ProductOptions({
           ))}
         </div>
 
-        <div className={styles.optionGroup}></div>
+        <div className={styles.optionGroup}>
+          <h2 className={styles.title}>Color</h2>
+
+          <div className={styles.optionList}>
+            {colors.map((color) => (
+              <button
+                key={color}
+                type="button"
+                className={`${styles.optionButton} ${selectedColor === color ? styles.selected : ""}`}
+                onClick={() => setSelectedColor(color)}
+              >
+                {color}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
