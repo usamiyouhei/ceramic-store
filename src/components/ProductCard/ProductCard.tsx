@@ -3,6 +3,7 @@ import styles from "./ProductCard.module.scss";
 import { Product } from "@/types/product";
 import Link from "next/link";
 import Image from "next/image";
+import ProductOptions from "../ProductOptions/ProductOptions";
 
 type ProductCardProps = {
   product: Product;
