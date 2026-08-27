@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               inStock={product.inStock}
             />
 
-            <div className={styles.option}>
+            {/* <div className={styles.option}>
               <h2>Size</h2>
 
               <div className={styles.optionList}>
@@ -79,7 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               disabled={!product.inStock}
             >
               {product.inStock ? "Add to cart" : "Sold out"}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
