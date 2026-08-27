@@ -67,8 +67,8 @@ export default function ProductOptions({
         </div>
       </div>
 
-      <div className={styles.quantity}>
-        <h2>Quantity</h2>
+      <div className={styles.optionGroup}>
+        <h2 className={styles.title}>Quantity</h2>
 
         <div className={styles.quantity}>
           <button
