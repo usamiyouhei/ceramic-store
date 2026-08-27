@@ -48,24 +48,58 @@ export default function ProductOptions({
             </button>
           ))}
         </div>
+      </div>
 
-        <div className={styles.optionGroup}>
-          <h2 className={styles.title}>Color</h2>
+      <div className={styles.optionGroup}>
+        <h2 className={styles.title}>Color</h2>
 
-          <div className={styles.optionList}>
-            {colors.map((color) => (
-              <button
-                key={color}
-                type="button"
-                className={`${styles.optionButton} ${selectedColor === color ? styles.selected : ""}`}
-                onClick={() => setSelectedColor(color)}
-              >
-                {color}
-              </button>
-            ))}
-          </div>
+        <div className={styles.optionList}>
+          {colors.map((color) => (
+            <button
+              key={color}
+              type="button"
+              className={`${styles.optionButton} ${selectedColor === color ? styles.selected : ""}`}
+              onClick={() => setSelectedColor(color)}
+            >
+              {color}
+            </button>
+          ))}
         </div>
       </div>
+
+      <div className={styles.quantity}>
+        <h2>Quantity</h2>
+
+        <div className={styles.quantity}>
+          <button
+            type="button"
+            onClick={decreaseQuantity}
+            disabled={quantity === 1}
+            aria-label="数量を減らす"
+          >
+            -
+          </button>
+
+          <span>{quantity}</span>
+
+          <button
+            type="button"
+            onClick={increaseQuantity}
+            aria-label="数量を増やす"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className={styles.cartButton}
+        disabled={!inStock}
+        onClick={handleAddToCart}
+      >
+        {inStock ? "Add to cart" : "Sold out"}
+      </button>
     </div>
   );
 }
