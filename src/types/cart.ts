@@ -1,10 +1,10 @@
-type CartItem = {
+export type CartItem = {
   cartItemId: string;
   productId: string;
   name: string;
-  price: string;
+  price: number;
   image: string;
   size: string;
   color: string;
-  quantity: string;
+  quantity: number;
 };

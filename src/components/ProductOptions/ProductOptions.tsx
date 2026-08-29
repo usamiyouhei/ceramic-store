@@ -1,21 +1,28 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./ProductOptions.module.scss";
+import { Product } from "@/types/product";
+import { useCartStore } from "@/store/cartStore";
 
 type ProductOptionsProps = {
   sizes: string[];
   colors: string[];
   inStock: boolean;
+  product: Product;
 };
 
 export default function ProductOptions({
   sizes,
   colors,
   inStock,
+  product,
 }: ProductOptionsProps) {
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const addItem = useCartStore((state) => state.addItem);
 
   const decreaseQuantity = () => {
     setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
