@@ -44,11 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </p>
 
             <p className={styles.description}>{product.description}</p>
-            <ProductOptions
-              sizes={product.sizes}
-              colors={product.colors}
-              inStock={product.inStock}
-            />
+            <ProductOptions product={product} />
 
             {/* <div className={styles.option}>
               <h2>Size</h2>

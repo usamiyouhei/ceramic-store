@@ -5,20 +5,20 @@ import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
 
 type ProductOptionsProps = {
-  sizes: string[];
-  colors: string[];
-  inStock: boolean;
+  // sizes: string[];
+  // colors: string[];
+  // inStock: boolean;
   product: Product;
 };
 
 export default function ProductOptions({
-  sizes,
-  colors,
-  inStock,
+  // sizes,
+  // colors,
+  // inStock,
   product,
 }: ProductOptionsProps) {
-  const [selectedSize, setSelectedSize] = useState(sizes[0]);
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -33,10 +33,23 @@ export default function ProductOptions({
   };
 
   const handleAddToCart = () => {
-    console.log({
+    const cartItemId = [product.id, selectedSize, selectedColor].join("-");
+
+    addItem({
+      cartItemId,
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
       size: selectedSize,
       color: selectedColor,
+      quantity,
     });
+
+    setIsAdded(true);
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 1200);
   };
   return (
     <div className={styles.options}>
@@ -44,7 +57,7 @@ export default function ProductOptions({
         <h2 className={styles.title}>Size</h2>
 
         <div className={styles.optionList}>
-          {sizes.map((size) => (
+          {product.sizes.map((size) => (
             <button
               key={size}
               type="button"
@@ -61,7 +74,7 @@ export default function ProductOptions({
         <h2 className={styles.title}>Color</h2>
 
         <div className={styles.optionList}>
-          {colors.map((color) => (
+          {product.colors.map((color) => (
             <button
               key={color}
               type="button"
@@ -102,10 +115,11 @@ export default function ProductOptions({
       <button
         type="button"
         className={styles.cartButton}
-        disabled={!inStock}
+        disabled={!product.inStock}
         onClick={handleAddToCart}
       >
-        {inStock ? "Add to cart" : "Sold out"}
+        {!product.inStock ? "Sold out" : isAdded ? "added!" : "Add to cart"}
+        {/* {inStock ? "Add to cart" : "Sold out"} */}
       </button>
     </div>
   );
