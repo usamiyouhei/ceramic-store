@@ -1,0 +1,127 @@
+.main {
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+  background-color: #f8f7f5;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 40px;
+  color: #777;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: clamp(32px, 5vw, 48px);
+  text-align: center;
+}
+.empty {
+  padding: 40px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: 24px;
+  padding: 24px;
+  background-color: #fff;
+}
+
+.itemList {
+  display: grid;
+  gap: 16px;
+}
+
+.image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.content {
+  h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  p {
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.quantity {
+  display: flex;
+  width: fit-content;
+  margin-top: 16px;
+  border: 1px solid #d6d2cd;
+
+  button,
+  span {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+  }
+
+  button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:disabled {
+      color: #bbb;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    border-right: 1px solid #d6d2cd;
+    border-left: 1px solid #d6d2cd;
+  }
+}
+
+.removeButton {
+  margin-top: 16px;
+  border: 0;
+  color: #888;
+  background: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.subtotal {
+  font-weight: 600;
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-top: 32px;
+  padding: 28px;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+@media (width <= 640px) {
+  .item {
+    grid-template-columns: 100px 1fr;
+  }
+  .image {
+    height: 100px;
+  }
+  .subtotal {
+    grid-column: 2;
+  }
+}
