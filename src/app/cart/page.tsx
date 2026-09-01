@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function CartPage() {
   const items = useCartStore((state) => state.items);
-  const removeItems = useCartStore((state) => state.removeItem);
+  const removeItem = useCartStore((state) => state.removeItem);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const totalPrice = items.reduce(
@@ -63,9 +63,23 @@ export default function CartPage() {
                         +
                       </button>
                     </div>
+
+                    <button
+                      type="button"
+                      className={styles.removeButton}
+                      onClick={() => removeItem(item.cartItemId)}
+                    ></button>
                   </div>
+                  <p className={styles.subTotal}>
+                    ￥{(item.price * item.quantity).toLocaleString("ja-JP")}
+                  </p>
                 </article>
               ))}
+            </div>
+
+            <div className={styles.total}>
+              <span>Total</span>
+              <strong>￥{totalPrice.toLocaleString("ja-JP")}</strong>
             </div>
           </>
         )}
