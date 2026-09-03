@@ -7,7 +7,88 @@
   backdrop-filter: blur(12px);
 }
 
+.inner {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 72px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #222;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  color: #444;
+  font-size: 14px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #9a7b4f;
+  }
+}
+
+.cartLink {
+  position: relative;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  color: #222;
+  place-items: center;
+}
+
 .cartIcon {
   width: 25px;
   height: 25px;
+}
+
+.cartCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: grid;
+  min-width: 19px;
+  height: 19px;
+  padding-inline: 5px;
+  place-items: center;
+
+  border-radius: 999px;
+  color: #fff;
+  background-color: #9a7b4f;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media (width <= 520px) {
+  .inner {
+    min-height: 64px;
+    padding-inline: 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .navigation {
+    gap: 16px;
+  }
+
+  .navLink {
+    display: none;
+  }
 }
