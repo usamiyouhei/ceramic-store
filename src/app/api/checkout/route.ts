@@ -22,6 +22,44 @@ export async function POST(request: NextRequest) {
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
     for (const item of body.items) {
       const product = products.find((product) => product.id === item.productId);
+      if (!product) {
+        return NextResponse.json(
+          { error: "商品が見つかりません。" },
+          { status: 400 },
+        );
+      }
+
+      if (!product.inStock) {
+        return NextResponse.json(
+          { error: `${product.name}は在庫切れです。` },
+          { status: 400 },
+        );
+      }
+
+      if (!product.sizes.includes(item.size)) {
+        return NextResponse.json(
+          { error: "選択されたサイズは存在しません。" },
+          { status: 400 },
+        );
+      }
+
+      if (!product.colors.includes(item.color)) {
+        return NextResponse.json(
+          { error: "選択されたカラーは存在しません" },
+          { status: 400 },
+        );
+      }
+
+      if (
+        !Number.isInteger(item.quantity) ||
+        item.quantity < 1 ||
+        item.quantity > 99
+      ) {
+        return NextResponse.json(
+          { error: "数量が正しくありません。" },
+          { status: 400 },
+        );
+      }
     }
   } catch (error) {}
 }
