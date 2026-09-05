@@ -1,4 +1,5 @@
 import { products } from "@/data/products";
+import { stripe } from "@/lib/stripe";
 import { CheckoutItem } from "@/types/checkout";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -60,6 +61,62 @@ export async function POST(request: NextRequest) {
           { status: 400 },
         );
       }
+
+      lineItems.push({
+        price_data: {
+          currency: "jpy",
+
+          product_data: {
+            name: product.name,
+
+            description: [`Size: ${item.size}`, `Color: ${item.color}`].join(
+              "/",
+            ),
+
+            metadata: {
+              productId: product.id,
+              size: item.size,
+              color: item.color,
+            },
+          },
+
+          unit_amount: product.price,
+        },
+
+        quantity: item.quantity,
+      });
     }
-  } catch (error) {}
+
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? request.nextUrl.origin;
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: lineItems,
+
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+
+      cancel_url: `${baseUrl}/cancel`,
+
+      shipping_address_collection: {
+        allowed_countries: ["JP", "AE"],
+      },
+    });
+
+    if (!session.url) {
+      return NextResponse.json(
+        { error: "決済URLを作成できませんでした。" },
+        { status: 500 },
+      );
+    }
+    return NextResponse.json({
+      url: session.url,
+    });
+  } catch (error) {
+    console.error("Stripe Checkout error:", error);
+
+    return NextResponse.json(
+      { error: "決済処理を開始できませんでした。" },
+      { status: 400 },
+    );
+  }
 }
