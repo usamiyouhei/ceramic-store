@@ -45,7 +45,26 @@ export default function CheckoutButton() {
       }
 
       window.location.href = data.url;
-    } catch (error) {}
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "エラーが発生しました。";
+
+      setErrorMessage(message);
+      setIsLoading(false);
+    }
   };
-  return <div></div>;
+  return (
+    <div className={styles.wrapper}>
+      <button
+        type="button"
+        className={styles.button}
+        onClick={handleCheckout}
+        disabled={items.length === 0 || isLoading}
+      >
+        {isLoading ? "Loading..." : "Proceed to checkout"}
+      </button>
+
+      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+    </div>
+  );
 }
