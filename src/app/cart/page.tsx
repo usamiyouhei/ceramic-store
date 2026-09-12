@@ -4,6 +4,7 @@ import styles from "./page.module.scss";
 import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
 import Image from "next/image";
+import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
 
 export default function CartPage() {
   const items = useCartStore((state) => state.items);
@@ -84,6 +85,7 @@ export default function CartPage() {
           </>
         )}
       </div>
+      <CheckoutButton />
     </main>
   );
 }
