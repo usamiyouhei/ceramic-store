@@ -1,0 +1,46 @@
+.main {
+  display: grid;
+  min-height: calc(100vh - 72px);
+  padding: 40px 24px;
+  background-color: #f8f7f5;
+  place-items: center;
+}
+
+.card {
+  width: min(100%, 640px);
+  padding: 64px 40px;
+  background-color: #ffffff;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 24px;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 400;
+  }
+}
+
+.label {
+  margin-bottom: 12px;
+  color: #9a7b4f;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.amount {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.email {
+  margin-bottom: 32px;
+  color: #777777;
+  font-size: 14px;
+}
+
+.link {
+  display: inline-block;
+  padding: 14px 28px;
+  color: #ffffff;
+  background-color: #222222;
+}
